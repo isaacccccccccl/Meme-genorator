@@ -36,6 +36,8 @@ function onImageClick(elImg, imgId) {
     memeController()
     gElImg = elImg
     gCurrMeme = getMeme(imgId)
+    // console.log(gCurrMeme)
+    if (!gCurrMeme) gCurrMeme = createGMeme(imgId)
     setInputs()
     renderMeme(gElImg, gCurrMeme)
 }
@@ -44,8 +46,8 @@ function renderMeme(elImg) {
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
-    gCtx.font = `${gCurrMeme.lines[0].size}px serif`
-    gCtx.fillText(gCurrMeme.lines[0].txt, elImg.width / 4, 80)
+    gCtx.font = `${gCurrMeme.lines[gCurrMeme.selectedLineIdx].size}px serif`
+    gCtx.fillText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt, elImg.width / 4, 80)
 }
 
 function memeController() {
@@ -62,12 +64,12 @@ function coverCanvasWithImg(elImg) {
 
 function onUpdateText(elVal) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    gCurrMeme.lines[0].txt = elVal
+    gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt = elVal
     updateGmemesText(elVal, gCurrMeme) 
     renderMeme(gElImg)
 }
 
 function setInputs() {
     const elInputTxt = document.querySelector('.txt')
-    elInputTxt.value = gCurrMeme.lines[0].txt
+    elInputTxt.value = gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt
 }

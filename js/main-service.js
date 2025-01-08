@@ -53,20 +53,23 @@ function getImgs() {
     return gImgs
 }
 
-// function createGMeme() {
+function createGMeme(imgId) {
 
-//     const meme = {
-//         selectedImgId: 1,
-//         selectedLineIdx: 0,
-//         lines: [
-//             {
-//                 txt: 'first image!!',
-//                 size: 50,
-//                 color: 'red'
-//             }
-//         ]
-//     }
-// }
+    const meme = {
+        selectedImgId: imgId,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: '',
+                size: 25,
+                color: 'black'
+            }
+        ]
+    }
+    gMeme.splice(imgId - 1, 0, meme)
+
+    return meme
+}
 
 function findImg(imgId) {
     return gImgs.find(image => imgId === image.id)
@@ -77,6 +80,7 @@ function getMeme(imgId) {
 }
 
 function updateGmemesText(elVal, gCurrMeme) {
-    console.log(gMeme[gCurrMeme.selectedImgId - 1].lines[0].txt)
-    // gMeme[gCurrMeme.selectedImgId - 1].lines.txt = elVal
+    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
+    console.log(gMeme[index].lines[0].txt)
+    gMeme[index].lines[0].txt = elVal
 }

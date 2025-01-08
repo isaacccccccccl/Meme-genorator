@@ -18,8 +18,12 @@ canvas {
 }
 
 .options {
-    width: 400px;
-    height: 400px;
+    width: 50%;
+    /* height: 400px; */
     background-color: rgb(28, 103, 168);
     border: 2px solid black;
+}
+
+canvas {
+    width: 50%
 }
