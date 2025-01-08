@@ -1,0 +1,77 @@
+/* Mobile Only */
+@media (max-width: 640px) {
+
+    .main-header .btn-toggle-menu {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        transition: left 0.8s ease;
+    }
+
+    .main-nav {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        border-inline-start: 1px solid #ccc;
+        background-color: rgb(255 255 255 / 89%);
+        min-width: 200px;
+
+        transform: translateX(100%);
+
+        transition: transform 0.8s, box-shadow .8s;
+    }
+
+    body.menu-open .main-nav {
+        box-shadow: -6px 0px 14px 0px rgb(0 0 0 / 20%);
+        transform: translateX(0);
+    }
+
+    .main-nav>ul {
+        flex-direction: column;
+    }
+
+    .main-nav>ul>li {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .main-nav a {
+        display: grid;
+        padding: 8px 10px;
+        color: var(--crl-logo);
+    }
+
+    .main-nav a:hover {
+        background-color: #e0e0e0;
+    }
+
+}
+
+
+/* Large */
+@media (min-width: 640px) {
+    .main-header .btn-toggle-menu {
+        display: none;
+    }
+
+    html {
+        font-size: 16px;
+    }
+
+    .main-layout {
+        grid-template-columns:
+            minmax(var(--layoutpadding), 1fr) minmax(auto, 1500px) minmax(var(--layoutpadding), 1fr);
+    }
+
+    .main-nav a {
+        width: 130px;
+        height: 130px;
+    }
+
+    .cards {
+        background-color: aliceblue;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 10px;
+    }
+}

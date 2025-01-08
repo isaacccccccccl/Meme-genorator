@@ -19,8 +19,8 @@
                     <li><a href="#" class="clean-link">Randomize</a></li>
                 </ul>
             </nav>
+            <button class="btn-toggle-menu" onclick="toggleMenu(this)">more</button>
         </div>
-
     </header>
 
     <main class="main-content">
@@ -51,6 +51,14 @@
         <div class="rights flex align-center justify-center">Isaac Levy</div>
     </footer>
 
+    <script>
+        function toggleMenu(elBtn) {
+            console.log(elBtn)
+            const elToggel = document.body.classList.toggle('menu-open')
+            if (elToggel) elBtn.style.right = '189px';
+            else elBtn.style.right = '0px';
+        }
+    </script>
 </body>
 
 </html>

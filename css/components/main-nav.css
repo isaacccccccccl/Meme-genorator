@@ -7,9 +7,6 @@
 }
 
 .main-nav a {
-    width: 130px;
-    height: 130px;
-    
     display: grid;
     place-items: center;
     grid-auto-flow: row;

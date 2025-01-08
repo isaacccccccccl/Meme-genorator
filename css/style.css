@@ -11,3 +11,7 @@
 
 /* setup */
 @import url(setup/vars.css);
+
+
+/* media quareys */
+@import url(setup/mq.css);
