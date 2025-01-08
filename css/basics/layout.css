@@ -11,3 +11,15 @@
 .main-layout>*:not(.full) {
     grid-column: 2;
 }
+
+canvas {
+    background-color: aliceblue;
+    border: 2px solid black;
+}
+
+.options {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(28, 103, 168);
+    border: 2px solid black;
+}

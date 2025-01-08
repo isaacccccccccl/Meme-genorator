@@ -24,25 +24,43 @@
     </header>
 
     <main class="main-content">
-        <div class="filter-bar">
-            <input type="text">
-            <button>Happy</button>
-            <button>sad</button>
-            <button>Scary</button>
-            <button>Sarcastic</button>
-            <button>Funn</button>
-        </div>
         <div class="cards">
-            <img src="img/1.jpg" alt="">
-            <img src="img/2.jpg" alt="">
-            <img src="img/3.jpg" alt="">
-            <img src="img/4.jpg" alt="">
-            <img src="img/5.jpg" alt="">
-            <img src="img/6.jpg" alt="">
-            <img src="img/7.jpg" alt="">
-            <img src="img/8.jpg" alt="">
-            <img src="img/9.jpg" alt="">
-            <img src="img/10.jpg" alt="">
+            <div class="filter-bar">
+                <input type="text">
+                <button>Happy</button>
+                <button>sad</button>
+                <button>Scary</button>
+                <button>Sarcastic</button>
+                <button>Funn</button>
+            </div>
+            <div class="card">
+                <img src="img/1.jpg" onclick="onImageClick()">
+                <img src="img/2.jpg" onclick="onImageClick()">
+                <img src="img/3.jpg" onclick="onImageClick()">
+                <img src="img/4.jpg" onclick="onImageClick()">
+                <img src="img/5.jpg" onclick="onImageClick()">
+                <img src="img/6.jpg" onclick="onImageClick()">
+                <img src="img/7.jpg" onclick="onImageClick()">
+                <img src="img/8.jpg" onclick="onImageClick()">
+                <img src="img/9.jpg" onclick="onImageClick()">
+                <img src="img/10.jpg" onclick="onImageClick()">
+            </div>
+
+        </div>
+
+        <div class="canvas-container flex space-between" style="display: none;">
+            <canvas width="400" height="400" onclick="drawRect(event)">
+            </canvas>
+            <div class="options">
+                <input type="text">
+                <button>change</button>
+                <button>add</button>
+                <button>delete</button>
+                <div class="more-fetures">
+                    <input type="color" class="color">
+                    <input type="color" class="backgound-color">
+                </div>
+            </div>
         </div>
     </main>
 

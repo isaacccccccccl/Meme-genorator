@@ -68,7 +68,7 @@
         height: 130px;
     }
 
-    .cards {
+    .card {
         background-color: aliceblue;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
