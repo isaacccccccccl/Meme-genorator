@@ -1,0 +1,13 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: var(--layoutpadding) 1fr var(--layoutpadding);
+}
+
+.main-layout>.full {
+    grid-column: 1/-1;
+
+}
+
+.main-layout>*:not(.full) {
+    grid-column: 2;
+}

@@ -1,0 +1,21 @@
+.main-content {
+    background-color: var(--crl-primery-2);
+    display: grid;
+}
+
+.main-content .filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.main-content .filter-bar input {
+    width: 35%;
+    height: 20px;
+}
+
+.main-content .filter-bar button {
+    width: fit-content;
+    height: 20px;
+}
