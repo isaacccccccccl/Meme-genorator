@@ -46,9 +46,23 @@ function renderMeme(elImg) {
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
-    gCtx.font = `${gCurrMeme.lines[gCurrMeme.selectedLineIdx].size}px serif`
-    gCtx.fillStyle = gCurrMeme.lines[gCurrMeme.selectedLineIdx].color
-    gCtx.fillText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt, elImg.width / 4, 80)
+    for (var i = 0; i < gCurrMeme.lines.length; i++) {
+
+        gCtx.font = `${gCurrMeme.lines[i].size}px serif`
+        gCtx.fillStyle = gCurrMeme.lines[i].color
+        // console.log(gCurrMeme.lines.length)
+        if (i > 0) {
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 400)
+            gCtx.rect(gElImg.width / 4 , 400 - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
+            gCtx.stroke()
+    
+        } else {
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 80)
+            gCtx.rect(gElImg.width / 4 , 80 - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
+            gCtx.stroke()
+    }
+
+    }
 }
 
 function memeController() {
@@ -67,10 +81,11 @@ function onUpdate(elVal, val) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gCurrMeme.lines[gCurrMeme.selectedLineIdx][val] = elVal
 
-    updateGmemes(elVal, gCurrMeme,val) 
+    updateGmemes(elVal, gCurrMeme, val)
     renderMeme(gElImg)
 }
 
+// Todo: when opening a new image if it has a different color or size ajust it from the beggining
 function setInputs() {
     const elInputTxt = document.querySelector('.txt')
     elInputTxt.value = gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt
@@ -80,6 +95,21 @@ function onDownload(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
     elLink.download = 'my-project'
+}
+
+function onAddLine() {
+    addLine(gCurrMeme)
+    gCurrMeme = getMeme(gCurrMeme.selectedImgId)
+    renderMeme(gElImg)
+    
+    
+}
+
+function onSwitchLine() {
+    gCurrMeme.selectedLineIdx = (gCurrMeme.lines.length > gCurrMeme.selectedLineIdx + 1) ? gCurrMeme.selectedLineIdx + 1: 0
+    updatelineIdx(gCurrMeme.selectedLineIdx)
+    setInputs()
+    
 }
 
 function onUpdateSize(val) {

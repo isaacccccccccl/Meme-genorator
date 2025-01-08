@@ -29,7 +29,7 @@ var gMeme = [
             {
                 txt: 'first image!!',
                 size: 50,
-                color: 'black'
+                color: 'black',
             }
         ]
     },
@@ -71,6 +71,16 @@ function createGMeme(imgId) {
     return meme
 }
 
+function addLine(gCurrMeme) {
+    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
+    const line = {
+        txt: 'Write here',
+        size: 20,
+        color: 'black'
+    }
+    gMeme[index].lines.push(line)
+}
+
 function findImg(imgId) {
     return gImgs.find(image => imgId === image.id)
 }
@@ -79,7 +89,13 @@ function getMeme(imgId) {
     return gMeme.find(meme => imgId === meme.selectedImgId)
 }
 
+function updatelineIdx(num) {
+    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
+    gMeme[index].selectedLineIdx = num
+}
+
 function updateGmemes(elVal, gCurrMeme, val) {
     const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
-    gMeme[index].lines[0][val] = elVal
+    // console.log(gMeme[index].lines[gMeme[index].selectedLineIdx])
+    gMeme[index].lines[gMeme[index].selectedLineIdx][val] = elVal
 }
