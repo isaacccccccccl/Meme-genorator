@@ -29,7 +29,7 @@ var gMeme = [
             {
                 txt: 'first image!!',
                 size: 50,
-                color: 'red'
+                color: 'black'
             }
         ]
     },
@@ -41,7 +41,7 @@ var gMeme = [
             {
                 txt: 'I sometimes eat Falafel',
                 size: 20,
-                color: 'red'
+                color: 'black'
             }
         ]
     }
@@ -79,8 +79,7 @@ function getMeme(imgId) {
     return gMeme.find(meme => imgId === meme.selectedImgId)
 }
 
-function updateGmemesText(elVal, gCurrMeme) {
+function updateGmemes(elVal, gCurrMeme, val) {
     const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
-    console.log(gMeme[index].lines[0].txt)
-    gMeme[index].lines[0].txt = elVal
+    gMeme[index].lines[0][val] = elVal
 }

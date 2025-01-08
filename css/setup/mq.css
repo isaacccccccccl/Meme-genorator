@@ -74,11 +74,4 @@
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 10px;
     }
-
-    /* .options {
-        width: minmax(100px, 400px);
-        height: 400px;
-        background-color: rgb(28, 103, 168);
-        border: 2px solid black;
-    } */
 }

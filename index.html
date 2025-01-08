@@ -31,7 +31,7 @@
                 <button>sad</button>
                 <button>Scary</button>
                 <button>Sarcastic</button>
-                <button>Funn</button>
+                <button>Funny</button>
             </div>
             <div class="card">
             </div>
@@ -42,13 +42,28 @@
             <canvas width="400" height="400">
             </canvas>
             <div class="options">
-                <input type="text" class="txt" oninput="onUpdateText(this.value)">
-                <button>change</button>
-                <button>add</button>
-                <button>delete</button>
-                <div class="more-fetures">
-                    <input type="color" class="color">
-                    <input type="color" class="backgound-color">
+                <input type="text" class="txt" oninput="onUpdate(this.value, 'txt')" placeholder="Write something">
+
+                <div class="options-buttons flex">
+                    <button class="add-line" onclick="addLine()">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+
+                <div class="design-fetures">
+                    <input type="color" class="color" onchange="onUpdate(this.value, 'color')" title="text color">
+                    <input type="color" class="color" onchange="onUpdate(this.value, 'color')" title="border color">
+                    <button type="button" class="up" onclick="onUpdateSize(5)" title="increase font">↑</button>
+                    <button type="button" class="down" onclick="onUpdateSize(-5)" title="increase font">↓</button>
+                    <button>font</button>
+                    <button>font</button>
+                    <button>font</button>
+                    <!-- <input type="color" class="backgound-color"> -->
+                </div>
+                <div class="save">
+                    <a href="#" onclick="onDownload(this)" download="file-name">download</a>
+                    <a href="#" onclick="onDownload(this)" download="file-name">download</a>
+                    <a href="#" onclick="onDownload(this)" download="file-name">download</a>
                 </div>
             </div>
         </div>
@@ -68,7 +83,7 @@
         }
     </script>
 
-<script src="js/main-service.js"></script>
+    <script src="js/main-service.js"></script>
     <script src="js/main-controller.js"></script>
 </body>
 

@@ -1,0 +1,33 @@
+.canvas-container {
+    display: grid;
+    gap: 10px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    place-items: center;
+
+    background-color: var(--crl-primery-4);
+}
+
+.options .txt {
+    width: fit-content;
+}
+
+.options-buttons {
+    gap: 10px;
+}
+
+.canvas-container button {
+    width: 35px;
+    height: 35px;
+    font-size: 22px;
+    background-color: var(--crl-primery-1);
+}
+
+button:hover {
+    background-color: var(--crl-primery-3);
+    cursor: pointer;
+}
