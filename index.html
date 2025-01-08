@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="main-layout">
+<body class="main-layout" onload="onInit()">
     <header class="main-header full main-layout">
         <div class="header-container flex align-center space-between">
             <div class="logo">Meme Monster</div>
@@ -34,7 +34,7 @@
                 <button>Funn</button>
             </div>
             <div class="card">
-                <img src="img/1.jpg" onclick="onImageClick()">
+                <!-- <img src="img/1.jpg" onclick="onImageClick()">
                 <img src="img/2.jpg" onclick="onImageClick()">
                 <img src="img/3.jpg" onclick="onImageClick()">
                 <img src="img/4.jpg" onclick="onImageClick()">
@@ -43,7 +43,7 @@
                 <img src="img/7.jpg" onclick="onImageClick()">
                 <img src="img/8.jpg" onclick="onImageClick()">
                 <img src="img/9.jpg" onclick="onImageClick()">
-                <img src="img/10.jpg" onclick="onImageClick()">
+                <img src="img/10.jpg" onclick="onImageClick()"> -->
             </div>
 
         </div>
@@ -77,6 +77,9 @@
             else elBtn.style.right = '0px';
         }
     </script>
+
+<script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
 </body>
 
 </html>
