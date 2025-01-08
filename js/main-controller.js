@@ -52,13 +52,15 @@ function renderMeme(elImg) {
         gCtx.fillStyle = gCurrMeme.lines[i].color
         // console.log(gCurrMeme.lines.length)
         if (i > 0) {
-            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 400)
-            gCtx.rect(gElImg.width / 4 , 400 - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
+            var width = 400
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, width)
+            gCtx.rect(gElImg.width / 4 , width - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
             gCtx.stroke()
     
         } else {
-            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 80)
-            gCtx.rect(gElImg.width / 4 , 80 - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
+            var width = 80
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, width)
+            gCtx.rect(gElImg.width / 4 , width - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
             gCtx.stroke()
     }
 
