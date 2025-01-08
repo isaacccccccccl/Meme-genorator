@@ -18,8 +18,7 @@ var gImgs = [
     { id: 15, url: 'img/15.jpg', keywords: ['funny', 'cat'] },
     { id: 16, url: 'img/16.jpg', keywords: ['funny', 'cat'] },
     { id: 17, url: 'img/17.jpg', keywords: ['funny', 'cat'] },
-    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] },
-    { id: 19, url: 'img/19.jpg', keywords: ['funny', 'cat'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] }
 ]
 
 var gMeme = {
@@ -40,6 +39,6 @@ function getImgs() {
     return gImgs
 }
 
-function findImg() {
-    
+function findImg(imgId) {
+    return gImgs.find(image => imgId === image.id)
 }
