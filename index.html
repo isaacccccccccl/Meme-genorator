@@ -39,10 +39,10 @@
         </div>
 
         <div class="canvas-container flex space-between" style="display: none;">
-            <canvas width="400" height="400" onclick="drawRect(event)">
+            <canvas width="400" height="400">
             </canvas>
             <div class="options">
-                <input type="text">
+                <input type="text" class="txt" oninput="onUpdateText(this.value)">
                 <button>change</button>
                 <button>add</button>
                 <button>delete</button>

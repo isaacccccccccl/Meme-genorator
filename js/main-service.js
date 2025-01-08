@@ -21,17 +21,31 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] }
 ]
 
-var gMeme = {
-    selectedImgId: 5,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: 'red'
-        }
-    ]
-}
+var gMeme = [
+    {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'first image!!',
+                size: 50,
+                color: 'red'
+            }
+        ]
+    },
+
+    {
+        selectedImgId: 2,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'I sometimes eat Falafel',
+                size: 20,
+                color: 'red'
+            }
+        ]
+    }
+]
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -39,6 +53,30 @@ function getImgs() {
     return gImgs
 }
 
+// function createGMeme() {
+
+//     const meme = {
+//         selectedImgId: 1,
+//         selectedLineIdx: 0,
+//         lines: [
+//             {
+//                 txt: 'first image!!',
+//                 size: 50,
+//                 color: 'red'
+//             }
+//         ]
+//     }
+// }
+
 function findImg(imgId) {
     return gImgs.find(image => imgId === image.id)
+}
+
+function getMeme(imgId) {
+    return gMeme.find(meme => imgId === meme.selectedImgId)
+}
+
+function updateGmemesText(elVal, gCurrMeme) {
+    console.log(gMeme[gCurrMeme.selectedImgId - 1].lines[0].txt)
+    // gMeme[gCurrMeme.selectedImgId - 1].lines.txt = elVal
 }
