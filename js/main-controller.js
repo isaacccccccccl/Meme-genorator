@@ -3,13 +3,6 @@ var gElCanvas
 var gCtx
 var gCurrMeme
 var gElImg
-// var gIsClicked = false
-// var gCurrMeme  = {
-//     id,
-//     currTxtpos,
-//     getMeme,
-//     lines
-// }
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -52,21 +45,24 @@ function renderMeme(elImg) {
         gCtx.fillStyle = gCurrMeme.lines[i].color
         // console.log(gCurrMeme.lines.length)
         if (i > 0) {
-            var width = 400
-            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, width)
-            gCtx.rect(gElImg.width / 4 , width - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
-            gCtx.stroke()
-    
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 400)
         } else {
-            var width = 80
-            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, width)
-            gCtx.rect(gElImg.width / 4 , width - gCurrMeme.lines[i].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width, gCurrMeme.lines[i].size)
-            gCtx.stroke()
-    }
+            gCtx.fillText(gCurrMeme.lines[i].txt, elImg.width / 4, 80)
+        }
 
     }
+    createRect()
 }
 
+/// create a box for the line that i am on
+function createRect() {
+    const width = (gCurrMeme.selectedLineIdx !== 0) ? 400: 80
+    gCtx.rect(gElImg.width / 4, width - gCurrMeme.lines[gCurrMeme.selectedLineIdx].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width,
+                gCurrMeme.lines[gCurrMeme.selectedLineIdx].size)
+            gCtx.stroke()
+}
+
+//display the image 
 function memeController() {
     const elCards = document.querySelector('.cards')
     elCards.style.display = 'none'
@@ -79,6 +75,7 @@ function coverCanvasWithImg(elImg) {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
+// update color text
 function onUpdate(elVal, val) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gCurrMeme.lines[gCurrMeme.selectedLineIdx][val] = elVal
@@ -87,31 +84,38 @@ function onUpdate(elVal, val) {
     renderMeme(gElImg)
 }
 
-// Todo: when opening a new image if it has a different color or size ajust it from the beggining
 function setInputs() {
     const elInputTxt = document.querySelector('.txt')
     elInputTxt.value = gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt
+
+    const elInputColor = document.querySelector('.color')
+    elInputColor.value = gCurrMeme.lines[gCurrMeme.selectedLineIdx].color
 }
 
+// download image
 function onDownload(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
     elLink.download = 'my-project'
 }
 
+// add new line
 function onAddLine() {
     addLine(gCurrMeme)
     gCurrMeme = getMeme(gCurrMeme.selectedImgId)
     renderMeme(gElImg)
-    
-    
+
+
 }
 
+// switch between lines
 function onSwitchLine() {
-    gCurrMeme.selectedLineIdx = (gCurrMeme.lines.length > gCurrMeme.selectedLineIdx + 1) ? gCurrMeme.selectedLineIdx + 1: 0
+    gCurrMeme.selectedLineIdx = (gCurrMeme.lines.length > gCurrMeme.selectedLineIdx + 1) ? gCurrMeme.selectedLineIdx + 1 : 0
+
     updatelineIdx(gCurrMeme.selectedLineIdx)
     setInputs()
-    
+    renderMeme(gElImg)
+
 }
 
 function onUpdateSize(val) {
@@ -119,3 +123,5 @@ function onUpdateSize(val) {
     const elval = gCurrMeme.lines[gCurrMeme.selectedLineIdx].size + val
     onUpdate(elval, 'size')
 }
+
+

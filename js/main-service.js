@@ -27,9 +27,11 @@ var gMeme = [
         selectedLineIdx: 0,
         lines: [
             {
+                pos,
+                isDrag: false,
                 txt: 'first image!!',
                 size: 50,
-                color: 'black',
+                color: '#ff0000',
             }
         ]
     },
@@ -39,6 +41,8 @@ var gMeme = [
         selectedLineIdx: 0,
         lines: [
             {
+                pos,
+                isDrag: false,
                 txt: 'I sometimes eat Falafel',
                 size: 20,
                 color: 'black'
@@ -49,6 +53,27 @@ var gMeme = [
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+//Check if the click is inside the circle 
+function isBoxClicked(clickedPos) {
+    const { pos } = gCircle
+    // Calc the distance between two dots
+    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
+    // console.log('distance', distance)
+    //If its smaller then the radius of the circle we are inside
+    return distance <= gCircle.size
+}
+
+
+function setBoxDrag(isDrag) {
+    gCircle.isDrag = isDrag
+}
+
+// Move the circle in a delta, diff from the pervious pos
+function moveBox(dx, dy) {
+    gCircle.pos.x += dx
+    gCircle.pos.y += dy
+
+}
 function getImgs() {
     return gImgs
 }
@@ -60,6 +85,8 @@ function createGMeme(imgId) {
         selectedLineIdx: 0,
         lines: [
             {
+                pos,
+                isDrag: false,
                 txt: '',
                 size: 25,
                 color: 'black'
