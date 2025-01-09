@@ -1,24 +1,24 @@
 'use strict'
 var gSelectedLine
 var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['funny', 'cat'] },
-    { id: 4, url: 'img/4.jpg', keywords: ['funny', 'cat'] },
-    { id: 5, url: 'img/5.jpg', keywords: ['funny', 'cat'] },
-    { id: 6, url: 'img/6.jpg', keywords: ['funny', 'cat'] },
-    { id: 7, url: 'img/7.jpg', keywords: ['funny', 'cat'] },
-    { id: 8, url: 'img/8.jpg', keywords: ['funny', 'cat'] },
-    { id: 9, url: 'img/9.jpg', keywords: ['funny', 'cat'] },
-    { id: 10, url: 'img/10.jpg', keywords: ['funny', 'cat'] },
-    { id: 11, url: 'img/11.jpg', keywords: ['funny', 'cat'] },
-    { id: 12, url: 'img/12.jpg', keywords: ['funny', 'cat'] },
-    { id: 13, url: 'img/13.jpg', keywords: ['funny', 'cat'] },
-    { id: 14, url: 'img/14.jpg', keywords: ['funny', 'cat'] },
-    { id: 15, url: 'img/15.jpg', keywords: ['funny', 'cat'] },
-    { id: 16, url: 'img/16.jpg', keywords: ['funny', 'cat'] },
-    { id: 17, url: 'img/17.jpg', keywords: ['funny', 'cat'] },
-    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] }
+    { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
+    { id: 2, url: 'img/2.jpg', keywords: ['funny', 'happy'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['funny', 'happy'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['cat'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['funny','sarcastic'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['funny'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['funny', 'happy', 'sarcastic'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['funny', 'sarcastic'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['funny'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['scary'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['funny'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['funny', 'happy'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['scary'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['sad', 'scary'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['sad', 'scary'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['funny'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['sad', 'scary'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'sad', 'scary'] }
 ]
 
 var gMeme = {
@@ -38,6 +38,7 @@ var gMeme = {
 // var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getImgs() {
+    if (gFilter) return gFilter
     return gImgs
 }
 
@@ -112,7 +113,7 @@ function deleteLine() {
 // }
 
 function isBoxClicked(clickedPos) {
-    const foundLine = gMeme.lines.some((meme,i) => {
+    const foundLine = gMeme.lines.some((meme, i) => {
         const { pos, memeWidth, size } = meme
         console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
         if (pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
@@ -141,6 +142,11 @@ function moveBox(dx, dy) {
 
 function updateFont(elFont) {
     gMeme.lines[gMeme.selectedLineIdx].fontFamily = elFont
+}
+
+///////////////////////////////
+function filterBy(elVal) {
+    return gImgs.filter(img => img.keywords.some(keyword => keyword.toLowerCase().includes(elVal.toLowerCase())))
 }
 
 

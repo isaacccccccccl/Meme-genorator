@@ -11,9 +11,9 @@ function onInit() {
     renderCards()
 }
 
-function renderCards() {
+function renderCards(filter) {
     // console.log(gCurrMeme)
-    const images = getImgs()
+    const images = filter || getImgs()
     let strHTML = ``
     images.forEach((image) => {
         strHTML += `<img src="${image.url}" onclick="onImageClick(this, ${image.id})" class="img-${image.id}">`

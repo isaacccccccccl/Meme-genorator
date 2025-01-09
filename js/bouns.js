@@ -2,6 +2,7 @@
 
 const SORAGE_KEY = 'memesDB'
 var gSave = []
+var gFilter
 
 function onRandomImage() {
     const imgs = getImgs()
@@ -21,7 +22,7 @@ function onSave() {
 function onSaveImg(gCurrMeme, data) {
     gSave = loadFromStorage(SORAGE_KEY)
     if (!gSave) gSave = []
-    gSave.push({gCurrMeme, data})
+    gSave.push({ gCurrMeme, data })
     saveToStorage(SORAGE_KEY, gSave)
 }
 
@@ -53,4 +54,9 @@ function getRandomInt(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-  }
+}
+
+function onFilter(elFilter) {
+    gFilter = filterBy(elFilter)
+    renderCards()
+}
