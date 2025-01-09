@@ -3,7 +3,7 @@
 const SORAGE_KEY = 'memesDB'
 var gSave = []
 var gFilter
-var flagRandomSave = 0
+
 function onRandomImage() {
     onInit()
     renderCards()

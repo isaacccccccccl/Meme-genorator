@@ -162,7 +162,6 @@ function onDeleteLine() {
         renderMeme(gElImg)
     } else {
         onSwitchLine()
-
     }
 }
 ////////////////////////////////////////////////////////////
