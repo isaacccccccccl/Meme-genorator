@@ -47,14 +47,22 @@
                 <div class="options-buttons flex">
                     <button class="add-line" onclick="onAddLine()">New line</button>
                     <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
+                    <button class="switch-line" onclick="onDeleteLine()">Delete Line</button>
                 </div>
 
                 <div class="design-fetures">
                     <input type="color" class="color" onchange="onUpdate(this.value, 'color')" title="text color">
-                    <input type="color" class="color" onchange="onUpdate(this.value, 'color')" title="border color">
-                    <button type="button" class="up" onclick="onUpdateSize(5)" title="increase font">↑</button>
-                    <button type="button" class="down" onclick="onUpdateSize(-5)" title="increase font">↓</button>
-                    <!-- <input type="color" class="backgound-color"> -->
+                    <button type="button" class="size-up" onclick="onUpdateSize(5)" title="increase font">+</button>
+                    <button type="button" class="size-down" onclick="onUpdateSize(-5)" title="increase font">-</button>
+                    <button type="button" class="up"  title="move up" onclick="onMoveText(-5)">↑</button>
+                    <button type="button" class="down" title="move down" onclick="onMoveText(5)">↓</button>
+                    <button type="button" class="up"  title="move right" onclick="onMoveTextSide(5)">→</button>
+                    <button type="button" class="down" title="move left" onclick="onMoveTextSide(-5)">←</button>
+                    <select class="change-font" onchange="onChangeFont(this.value)" id="">
+                        <option value="Ariel">Ariel</option>
+                        <option value="Serif">Serif</option>
+                        <option value="Courier New">courier-new</option>
+                    </select>
                 </div>
                 <div class="save">
                     <a href="#" onclick="onDownload(this)" download="file-name">download</a>

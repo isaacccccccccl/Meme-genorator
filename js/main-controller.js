@@ -46,7 +46,7 @@ function renderMeme(elImg) {
     coverCanvasWithImg(elImg)
     // create a text on the image
     for (var i = 0; i < gCurrMeme.lines.length; i++) {
-        gCtx.font = `${gCurrMeme.lines[i].size}px serif`
+        gCtx.font = `${gCurrMeme.lines[i].size}px ${gCurrMeme.lines[i].fontFamily}`
         gCtx.fillStyle = gCurrMeme.lines[i].color
         // console.log(gCurrMeme.lines.length)
         if (i > 0) {
@@ -129,6 +129,25 @@ function onUpdateSize(val) {
     // console.log(gCurrMeme.lines[gCurrMeme.selectedLineIdx].size)
     const elval = gCurrMeme.lines[gCurrMeme.selectedLineIdx].size + val
     onUpdate(elval, 'size')
+}
+
+function onMoveText(val) {
+    gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.y += val
+    moveBox(0, val)
+    renderMeme(gElImg)
+}
+
+function onMoveTextSide(val) {
+    gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x += val
+    moveBox(val, 0)
+    renderMeme(gElImg)
+}
+
+function onChangeFont(elVal) {
+    console.log(elVal)
+    gCurrMeme.lines[gCurrMeme.selectedLineIdx].fontFamily = elVal
+    updateFont(elVal)
+    renderMeme(gElImg)
 }
 
 ////////////////////////////////////////////////////////////

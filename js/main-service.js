@@ -118,4 +118,8 @@ function moveBox(dx, dy) {
     // console.log(gMeme.lines[gMeme.selectedLineIdx].pos.x)
 }
 
+function updateFont(elFont) {
+    gMeme.lines[gMeme.selectedLineIdx].fontFamily = elFont
+}
+
 
