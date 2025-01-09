@@ -150,6 +150,14 @@ function onChangeFont(elVal) {
     renderMeme(gElImg)
 }
 
+function onDeleteLine() {
+    gCurrMeme.lines.splice(gCurrMeme.selectedLineIdx, 1)
+    deleteLine()
+    if (!gCurrMeme.lines.length) {
+        
+    }
+    onSwitchLine()
+}
 ////////////////////////////////////////////////////////////
 
 function onDown(ev) {

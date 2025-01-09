@@ -93,6 +93,10 @@ function updateGmemesPos(pos) {
     gMeme.lines[gMeme.selectedLineIdx].pos.y = pos.y
 }
 
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+}
+
 //////////////////////////////////////////////////
 //Check if the click is inside the circle 
 function isBoxClicked(clickedPos) {
