@@ -1,5 +1,5 @@
 'use strict'
-
+var gSelectedLine
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
     { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] },
@@ -22,18 +22,18 @@ var gImgs = [
 ]
 
 var gMeme = {
-        selectedImgId: 1,
-        selectedLineIdx: 0,
-        lines: [
-            {
-                txt: 'first image!!',
-                size: 50,
-                color: '#ff0000',
-                isDrag: false,
-                pos: {x:0, y:0}
-            }
-        ]
-    }
+    selectedImgId: 1,
+    selectedLineIdx: 0,
+    lines: [
+        {
+            txt: 'first image!!',
+            size: 50,
+            color: '#ff0000',
+            isDrag: false,
+            pos: { x: 0, y: 0 }
+        }
+    ]
+}
 
 // var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -56,7 +56,7 @@ function createGMeme(imgId) {
                 size: 25,
                 color: '#000000',
                 isDrag: false,
-                pos: {x: gElCanvas.width / 4, y:gElCanvas.height / 8}
+                pos: { x: gElCanvas.width / 4, y: gElCanvas.height / 8 }
             }
         ]
     }
@@ -71,7 +71,7 @@ function addLine() {
         size: 20,
         color: '#000000',
         isDrag: false,
-        pos: {x: gElCanvas.width / 4, y:gElCanvas.height}
+        pos: { x: gElCanvas.width / 4, y: gElCanvas.height }
     }
     gMeme.lines.push(line)
 }
@@ -94,21 +94,38 @@ function updateGmemesPos(pos) {
 }
 
 function deleteLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
 //////////////////////////////////////////////////
 //Check if the click is inside the circle 
+// function isBoxClicked(clickedPos) {
+//     const { pos, memeWidth , size} = gMeme.lines[gMeme.selectedLineIdx]
+//     console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
+//     if(pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
+//         console.log('true')
+//         return true
+//     } else {
+//         console.log('flase')
+//         return false
+//     }
+// }
+
 function isBoxClicked(clickedPos) {
-    const { pos, memeWidth , size} = gMeme.lines[gMeme.selectedLineIdx]
-    console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
-    if(pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
-        console.log('true')
-        return true
-    } else {
-        console.log('flase')
+    const foundLine = gMeme.lines.some((meme,i) => {
+        const { pos, memeWidth, size } = meme
+        console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
+        if (pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
+            console.log('true')
+            gSelectedLine = i
+            return true
+        }
         return false
+    })
+    if (foundLine) {
+        return [true, gSelectedLine]
     }
+    return [false, null]
 }
 
 function setBoxDrag(isDrag) {

@@ -16,7 +16,7 @@ function renderCards() {
     const images = getImgs()
     let strHTML = ``
     images.forEach((image, i) => {
-        strHTML += `<img src="${image.url}" onclick="onImageClick(this, ${image.id})">`
+        strHTML += `<img src="${image.url}" onclick="onImageClick(this, ${image.id})" class="img-${image.id}">`
     })
 
     const elCard = document.querySelector('.card')
@@ -30,13 +30,14 @@ function onImageClick(elImg, imgId) {
     memeController()
     gElImg = elImg
     gCurrMeme = findImg(imgId)
+    console.log(elImg, imgId)
 
     gCurrMeme = (!gCurrMeme) ? createGMeme(imgId) : getMeme()
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x = gElCanvas.width / 4
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.y = gElCanvas.width / 8
-    gCurrMeme.lines[gCurrMeme.selectedLineIdx].size = gElCanvas.width *0.1
+    gCurrMeme.lines[gCurrMeme.selectedLineIdx].size = gElCanvas.width * 0.1
     updateGmemesPos(gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos)
-    updateGmemes(gElCanvas.width *0.1, 'size')
+    updateGmemes(gElCanvas.width * 0.1, 'size')
     setInputs()
     renderMeme(gElImg, gCurrMeme)
 }
@@ -49,23 +50,24 @@ function renderMeme(elImg) {
     for (var i = 0; i < gCurrMeme.lines.length; i++) {
         gCtx.font = `${gCurrMeme.lines[i].size}px ${gCurrMeme.lines[i].fontFamily}`
         gCtx.fillStyle = gCurrMeme.lines[i].color
-        // console.log(gCurrMeme.lines.length)
         if (i > 0) {
             gCtx.fillText(gCurrMeme.lines[i].txt, gCurrMeme.lines[i].pos.x, gCurrMeme.lines[i].pos.y)
+            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width
+            updateGmemes(gCurrMeme.lines[i].memeWidth, 'memeWidth')
         } else {
             gCtx.fillText(gCurrMeme.lines[i].txt, gCurrMeme.lines[i].pos.x, gCurrMeme.lines[i].pos.y)
+            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width
+            updateGmemes(gCurrMeme.lines[i].memeWidth, 'memeWidth')
         }
 
     }
+    console.log(gCurrMeme.selectedLineIdx)
     createRect()
 }
 
 /// create a box for the line that i am on
 function createRect() {
-    gCurrMeme.lines[gCurrMeme.selectedLineIdx].memeWidth = gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width
-    updateGmemes(gCurrMeme.lines[gCurrMeme.selectedLineIdx].memeWidth, 'memeWidth')
-    // updateGmemes(gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos,'pos')
-    gCtx.rect(gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x, gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.y - gCurrMeme.lines[gCurrMeme.selectedLineIdx].size, gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width,
+    gCtx.rect(gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x, gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.y - gCurrMeme.lines[gCurrMeme.selectedLineIdx].size, gCurrMeme.lines[gCurrMeme.selectedLineIdx].memeWidth,
         gCurrMeme.lines[gCurrMeme.selectedLineIdx].size)
     gCtx.stroke()
 }
@@ -77,7 +79,6 @@ function memeController() {
     const elCanvas = document.querySelector('.canvas-container')
     elCanvas.style.display = 'flex'
     resizeCanvas()
-
 }
 
 function coverCanvasWithImg(elImg) {
@@ -112,7 +113,7 @@ function onDownload(elLink) {
 // add new line
 function onAddLine() {
     addLine(gCurrMeme)
-    gCurrMeme = getMeme(gCurrMeme.selectedImgId)
+    gCurrMeme = getMeme()
     renderMeme(gElImg)
 }
 
@@ -163,14 +164,28 @@ function onDeleteLine() {
     }
 }
 ////////////////////////////////////////////////////////////
+function switchLineTap(selectLine) {
+    if (!gCurrMeme.lines.length) return
+    gCurrMeme.selectedLineIdx = selectLine
+
+    updatelineIdx(gCurrMeme.selectedLineIdx)
+    setInputs()
+    renderMeme(gElImg)
+
+}
 
 function onDown(ev) {
     // console.log('onDown')
 
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
-    if (!isBoxClicked(pos)) return
-    console.log(gCurrMeme)
+    var [isClicked, selectLined] = isBoxClicked(pos)
+    if (!isClicked) {
+        setBoxDrag(false)
+        return
+    }
+    switchLineTap(selectLined)
+
 
     setBoxDrag(true)
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].isDrag = true
@@ -180,9 +195,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
-    // console.log('onMove')
-    /////////////////////////////////////////////////////////////////////////////////
-    //   console.log(gCurrMeme)
+    if (!gCurrMeme.lines.length) return
     const { isDrag } = gCurrMeme.lines[gCurrMeme.selectedLineIdx]
     if (!isDrag) return
     ////////////////////////////////////////////////////////////////////////////////
@@ -224,6 +237,7 @@ function onResize() {
 }
 
 function resizeCanvas() {
+    console.log('hi resizing')
     const elCanvas = document.querySelector('.canvas-container')
     if (elCanvas.style.display === 'none') return false
     gElCanvas.width = elCanvas.offsetWidth / 2
