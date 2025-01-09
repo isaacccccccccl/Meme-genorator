@@ -45,6 +45,7 @@ function renderMeme(elImg) {
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
+    if (!gCurrMeme.lines.length) return
     for (var i = 0; i < gCurrMeme.lines.length; i++) {
         gCtx.font = `${gCurrMeme.lines[i].size}px ${gCurrMeme.lines[i].fontFamily}`
         gCtx.fillStyle = gCurrMeme.lines[i].color
@@ -117,6 +118,7 @@ function onAddLine() {
 
 // switch between lines
 function onSwitchLine() {
+    if (!gCurrMeme.lines.length) return
     gCurrMeme.selectedLineIdx = (gCurrMeme.lines.length > gCurrMeme.selectedLineIdx + 1) ? gCurrMeme.selectedLineIdx + 1 : 0
 
     updatelineIdx(gCurrMeme.selectedLineIdx)
@@ -154,9 +156,11 @@ function onDeleteLine() {
     gCurrMeme.lines.splice(gCurrMeme.selectedLineIdx, 1)
     deleteLine()
     if (!gCurrMeme.lines.length) {
-        
+        renderMeme(gElImg)
+    } else {
+        onSwitchLine()
+
     }
-    onSwitchLine()
 }
 ////////////////////////////////////////////////////////////
 
