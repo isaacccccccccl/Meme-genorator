@@ -1,6 +1,5 @@
 /* Mobile Only */
 @media (max-width: 640px) {
-
     .main-header .btn-toggle-menu {
         position: relative;
         width: 50px;
@@ -44,7 +43,6 @@
     .main-nav a:hover {
         background-color: #e0e0e0;
     }
-
 }
 
 

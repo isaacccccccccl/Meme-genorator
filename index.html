@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="main-layout" onload="onInit()">
+<body class="main-layout" onload="onInit()" onresize="onResize()">
     <header class="main-header full main-layout">
         <div class="header-container flex align-center space-between">
             <div class="logo">Meme Monster</div>
@@ -47,7 +47,6 @@
                 <div class="options-buttons flex">
                     <button class="add-line" onclick="onAddLine()">New line</button>
                     <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
-                    <button>3</button>
                 </div>
 
                 <div class="design-fetures">
@@ -55,9 +54,6 @@
                     <input type="color" class="color" onchange="onUpdate(this.value, 'color')" title="border color">
                     <button type="button" class="up" onclick="onUpdateSize(5)" title="increase font">↑</button>
                     <button type="button" class="down" onclick="onUpdateSize(-5)" title="increase font">↓</button>
-                    <button>font</button>
-                    <button>font</button>
-                    <button>font</button>
                     <!-- <input type="color" class="backgound-color"> -->
                 </div>
                 <div class="save">

@@ -12,11 +12,6 @@
     grid-column: 2;
 }
 
-canvas {
-    background-color: aliceblue;
-    border: 2px solid black;
-}
-
 .options {
     width: 50%;
     /* height: 400px; */
@@ -25,5 +20,7 @@ canvas {
 }
 
 canvas {
+    background-color: aliceblue;
+    border: 2px solid black;
     width: 50%
 }

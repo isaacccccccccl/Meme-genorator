@@ -3,7 +3,7 @@
     gap: 10px;
 }
 
-.options {
+.canvas-container .options {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -12,18 +12,32 @@
     background-color: var(--crl-primery-4);
 }
 
-.options .txt {
+.canvas-container .options .txt {
     width: fit-content;
 }
 
-.options-buttons {
+.canvas-container .options-buttons {
     gap: 10px;
+    background-color: var(--crl-logo);
+    padding: 5%;
+    border-radius: 25%;
+}
+
+.canvas-container .design-fetures {
+    background-color: var(--crl-logo);
+    padding: 5%;
+    border-radius: 25%;
+}
+
+.canvas-container .save {
+    background-color: var(--crl-logo);
+    padding: 5%;
+    border-radius: 25%;
 }
 
 .canvas-container button {
-    width: 35px;
-    height: 35px;
-    font-size: 22px;
+    width: fit-content;
+    font-size: 100%;
     background-color: var(--crl-primery-1);
 }
 

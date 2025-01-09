@@ -30,7 +30,7 @@ var gMeme = {
                 size: 50,
                 color: '#ff0000',
                 isDrag: false,
-                pos: {x: 100, y:80}
+                pos: {x:0, y:0}
             }
         ]
     }
@@ -56,7 +56,7 @@ function createGMeme(imgId) {
                 size: 25,
                 color: '#000000',
                 isDrag: false,
-                pos: {x: 100, y:80}
+                pos: {x: gElCanvas.width / 4, y:gElCanvas.height / 8}
             }
         ]
     }
@@ -65,13 +65,13 @@ function createGMeme(imgId) {
     return meme
 }
 
-function addLine(gCurrMeme) {
+function addLine() {
     const line = {
         txt: 'Write here',
         size: 20,
         color: '#000000',
         isDrag: false,
-        pos: {x: 100, y:400}
+        pos: {x: gElCanvas.width / 4, y:gElCanvas.height}
     }
     gMeme.lines.push(line)
 }
@@ -86,6 +86,11 @@ function updatelineIdx(line) {
 
 function updateGmemes(elVal, val) {
     gMeme.lines[gMeme.selectedLineIdx][val] = elVal
+}
+
+function updateGmemesPos(pos) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = pos.x
+    gMeme.lines[gMeme.selectedLineIdx].pos.y = pos.y
 }
 
 //////////////////////////////////////////////////
@@ -110,5 +115,7 @@ function setBoxDrag(isDrag) {
 function moveBox(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+    // console.log(gMeme.lines[gMeme.selectedLineIdx].pos.x)
 }
+
 
