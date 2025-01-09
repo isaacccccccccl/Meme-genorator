@@ -12,10 +12,10 @@ function onInit() {
 }
 
 function renderCards() {
-
+    // console.log(gCurrMeme)
     const images = getImgs()
     let strHTML = ``
-    images.forEach((image, i) => {
+    images.forEach((image) => {
         strHTML += `<img src="${image.url}" onclick="onImageClick(this, ${image.id})" class="img-${image.id}">`
     })
 
@@ -30,7 +30,7 @@ function onImageClick(elImg, imgId) {
     memeController()
     gElImg = elImg
     gCurrMeme = findImg(imgId)
-    console.log(elImg, imgId)
+    // console.log(elImg, imgId)
 
     gCurrMeme = (!gCurrMeme) ? createGMeme(imgId) : getMeme()
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x = gElCanvas.width / 4
@@ -43,6 +43,7 @@ function onImageClick(elImg, imgId) {
 }
 
 function renderMeme(elImg) {
+    console.log(gCurrMeme)
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
