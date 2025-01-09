@@ -99,18 +99,6 @@ function deleteLine() {
 }
 
 //////////////////////////////////////////////////
-//Check if the click is inside the circle 
-// function isBoxClicked(clickedPos) {
-//     const { pos, memeWidth , size} = gMeme.lines[gMeme.selectedLineIdx]
-//     console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
-//     if(pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
-//         console.log('true')
-//         return true
-//     } else {
-//         console.log('flase')
-//         return false
-//     }
-// }
 
 function isBoxClicked(clickedPos) {
     const foundLine = gMeme.lines.some((meme, i) => {
