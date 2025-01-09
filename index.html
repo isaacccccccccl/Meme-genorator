@@ -39,7 +39,7 @@
         </div>
 
         <div class="canvas-container flex space-between" style="display: none;">
-            <canvas width="400" height="400">
+            <canvas width="400" height="400" onmousedown="onDown(event)" onmousemove="onMove(event)" onmouseup="onUp()">
             </canvas>
             <div class="options">
                 <input type="text" class="txt" oninput="onUpdate(this.value, 'txt')" placeholder="Write something">

@@ -21,108 +21,94 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] }
 ]
 
-var gMeme = [
-    {
+var gMeme = {
         selectedImgId: 1,
         selectedLineIdx: 0,
         lines: [
             {
-                pos,
-                isDrag: false,
                 txt: 'first image!!',
                 size: 50,
                 color: '#ff0000',
-            }
-        ]
-    },
-
-    {
-        selectedImgId: 2,
-        selectedLineIdx: 0,
-        lines: [
-            {
-                pos,
                 isDrag: false,
-                txt: 'I sometimes eat Falafel',
-                size: 20,
-                color: 'black'
+                pos: {x: 100, y:80}
             }
         ]
     }
-]
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+// var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-//Check if the click is inside the circle 
-function isBoxClicked(clickedPos) {
-    const { pos } = gCircle
-    // Calc the distance between two dots
-    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
-    // console.log('distance', distance)
-    //If its smaller then the radius of the circle we are inside
-    return distance <= gCircle.size
-}
-
-
-function setBoxDrag(isDrag) {
-    gCircle.isDrag = isDrag
-}
-
-// Move the circle in a delta, diff from the pervious pos
-function moveBox(dx, dy) {
-    gCircle.pos.x += dx
-    gCircle.pos.y += dy
-
-}
 function getImgs() {
     return gImgs
 }
 
-function createGMeme(imgId) {
+function findImg(imgId) {
+    return gMeme.selectedImgId === imgId
 
+}
+
+function createGMeme(imgId) {
     const meme = {
         selectedImgId: imgId,
         selectedLineIdx: 0,
         lines: [
             {
-                pos,
-                isDrag: false,
-                txt: '',
+                txt: 'Write here',
                 size: 25,
-                color: 'black'
+                color: '#000000',
+                isDrag: false,
+                pos: {x: 100, y:80}
             }
         ]
     }
-    gMeme.splice(imgId - 1, 0, meme)
+    gMeme = meme
 
     return meme
 }
 
 function addLine(gCurrMeme) {
-    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
     const line = {
         txt: 'Write here',
         size: 20,
-        color: 'black'
+        color: '#000000',
+        isDrag: false,
+        pos: {x: 100, y:400}
     }
-    gMeme[index].lines.push(line)
+    gMeme.lines.push(line)
 }
 
-function findImg(imgId) {
-    return gImgs.find(image => imgId === image.id)
+function getMeme() {
+    return gMeme
 }
 
-function getMeme(imgId) {
-    return gMeme.find(meme => imgId === meme.selectedImgId)
+function updatelineIdx(line) {
+    gMeme.selectedLineIdx = line
 }
 
-function updatelineIdx(num) {
-    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
-    gMeme[index].selectedLineIdx = num
+function updateGmemes(elVal, val) {
+    gMeme.lines[gMeme.selectedLineIdx][val] = elVal
 }
 
-function updateGmemes(elVal, gCurrMeme, val) {
-    const index = gMeme.findIndex(meme => gCurrMeme.selectedImgId === meme.selectedImgId)
-    // console.log(gMeme[index].lines[gMeme[index].selectedLineIdx])
-    gMeme[index].lines[gMeme[index].selectedLineIdx][val] = elVal
+//////////////////////////////////////////////////
+//Check if the click is inside the circle 
+function isBoxClicked(clickedPos) {
+    const { pos, memeWidth , size} = gMeme.lines[gMeme.selectedLineIdx]
+    console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
+    if(pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
+        console.log('true')
+        return true
+    } else {
+        console.log('flase')
+        return false
+    }
 }
+
+function setBoxDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+// Move the circle in a delta, diff from the pervious pos
+function moveBox(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}
+
