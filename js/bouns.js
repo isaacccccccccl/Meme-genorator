@@ -3,12 +3,12 @@
 const SORAGE_KEY = 'memesDB'
 var gSave = []
 var gFilter
-
+var flagRandomSave = 0
 function onRandomImage() {
+    onInit()
+    renderCards()
     const imgs = getImgs()
     const random = getRandomInt(0, imgs.length)
-    console.log('imgs[random]', imgs[random])
-    console.log('imgs[random]', imgs[random].id)
     const elImg = document.querySelector(`.img-${imgs[random].id}`)
     onImageClick(elImg, imgs[random].id)
 }

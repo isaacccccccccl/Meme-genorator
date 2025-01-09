@@ -43,7 +43,8 @@ function onImageClick(elImg, imgId) {
 }
 
 function renderMeme(elImg) {
-    console.log(gCurrMeme)
+    // console.log(gCurrMeme)
+    console.log(elImg)
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
@@ -238,7 +239,7 @@ function onResize() {
 }
 
 function resizeCanvas() {
-    console.log('hi resizing')
+    console.log(gImgs)
     const elCanvas = document.querySelector('.canvas-container')
     if (elCanvas.style.display === 'none') return false
     gElCanvas.width = elCanvas.offsetWidth / 2
