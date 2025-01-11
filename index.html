@@ -27,11 +27,18 @@
         <div class="cards">
             <div class="filter-bar">
                 <input type="text" oninput="onFilter(this.value)" placeholder="filter by">
-                <button onclick="onFilter('happy')">Happy</button>
+                <ul>
+                    <li><a href="#" onclick="onFilter('happy')">Happy</a></li>
+                    <li><a href="#" onclick="onFilter('sad')">sad</a></li>
+                    <li><a href="#" onclick="onFilter('scary')">Scary</a></li>
+                    <li><a href="#" onclick="onFilter('sarcastic')">Sarcastic</a></li>
+                    <li><a href="#" onclick="onFilter('funny')">Funny</a></li>
+                </ul>
+                <!-- <button onclick="onFilter('happy')">Happy</button>
                 <button onclick="onFilter('sad')">sad</button>
                 <button onclick="onFilter('scary')">Scary</button>
                 <button onclick="onFilter('sarcastic')">Sarcastic</button>
-                <button onclick="onFilter('funny')">Funny</button>
+                <button onclick="onFilter('funny')">Funny</button> -->
             </div>
             <div class="card">
             </div>
@@ -79,10 +86,7 @@
 
     <script>
         function toggleMenu(elBtn) {
-            console.log(elBtn)
             const elToggel = document.body.classList.toggle('menu-open')
-            if (elToggel) elBtn.style.right = '189px';
-            else elBtn.style.right = '0px';
         }
     </script>
 

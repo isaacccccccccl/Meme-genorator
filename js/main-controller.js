@@ -12,7 +12,6 @@ function onInit() {
 }
 
 function renderCards(filter) {
-    // console.log(gCurrMeme)
     const images = filter || getImgs()
     let strHTML = ``
     images.forEach((image) => {
@@ -30,7 +29,6 @@ function onImageClick(elImg, imgId) {
     memeController()
     gElImg = elImg
     gCurrMeme = findImg(imgId)
-    // console.log(elImg, imgId)
 
     gCurrMeme = (!gCurrMeme) ? createGMeme(imgId) : getMeme()
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].pos.x = gElCanvas.width / 4
@@ -43,8 +41,6 @@ function onImageClick(elImg, imgId) {
 }
 
 function renderMeme(elImg) {
-    // console.log(gCurrMeme)
-    console.log(elImg)
     // cover canvas with img
     coverCanvasWithImg(elImg)
     // create a text on the image
@@ -54,16 +50,15 @@ function renderMeme(elImg) {
         gCtx.fillStyle = gCurrMeme.lines[i].color
         if (i > 0) {
             gCtx.fillText(gCurrMeme.lines[i].txt, gCurrMeme.lines[i].pos.x, gCurrMeme.lines[i].pos.y)
-            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width
-            updateGmemes(gCurrMeme.lines[i].memeWidth, 'memeWidth')
+            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[i].txt).width
+            updateGmemesWidth(gCurrMeme.lines[i].memeWidth, 'memeWidth', i)
         } else {
             gCtx.fillText(gCurrMeme.lines[i].txt, gCurrMeme.lines[i].pos.x, gCurrMeme.lines[i].pos.y)
-            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[gCurrMeme.selectedLineIdx].txt).width
-            updateGmemes(gCurrMeme.lines[i].memeWidth, 'memeWidth')
+            gCurrMeme.lines[i].memeWidth = gCtx.measureText(gCurrMeme.lines[i].txt).width
+            updateGmemesWidth(gCurrMeme.lines[i].memeWidth, 'memeWidth', i)
         }
 
     }
-    console.log(gCurrMeme.selectedLineIdx)
     createRect()
 }
 
@@ -93,7 +88,7 @@ function onUpdate(elVal, val) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gCurrMeme.lines[gCurrMeme.selectedLineIdx][val] = elVal
 
-    updateGmemes(elVal, gCurrMeme, val)
+    updateGmemes(elVal, val)
     renderMeme(gElImg)
 }
 
@@ -114,7 +109,7 @@ function onDownload(elLink) {
 
 // add new line
 function onAddLine() {
-    addLine(gCurrMeme)
+    addLine()
     gCurrMeme = getMeme()
     renderMeme(gElImg)
 }
@@ -131,7 +126,6 @@ function onSwitchLine() {
 }
 
 function onUpdateSize(val) {
-    // console.log(gCurrMeme.lines[gCurrMeme.selectedLineIdx].size)
     const elval = gCurrMeme.lines[gCurrMeme.selectedLineIdx].size + val
     onUpdate(elval, 'size')
 }
@@ -149,14 +143,12 @@ function onMoveTextSide(val) {
 }
 
 function onChangeFont(elVal) {
-    console.log(elVal)
     gCurrMeme.lines[gCurrMeme.selectedLineIdx].fontFamily = elVal
     updateFont(elVal)
     renderMeme(gElImg)
 }
 
 function onDeleteLine() {
-    gCurrMeme.lines.splice(gCurrMeme.selectedLineIdx, 1)
     deleteLine()
     if (!gCurrMeme.lines.length) {
         renderMeme(gElImg)
@@ -176,8 +168,6 @@ function switchLineTap(selectLine) {
 }
 
 function onDown(ev) {
-    // console.log('onDown')
-
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
     var [isClicked, selectLined] = isBoxClicked(pos)
@@ -214,14 +204,11 @@ function onMove(ev) {
 }
 
 function onUp() {
-    console.log('gCurr',)
-
     setBoxDrag(false)
     document.body.style.cursor = 'grab'
 }
 
 function getEvPos(ev) {
-    // console.log('ev',ev)
     let pos = {
         x: ev.offsetX,
         y: ev.offsetY
@@ -238,11 +225,9 @@ function onResize() {
 }
 
 function resizeCanvas() {
-    console.log(gImgs)
     const elCanvas = document.querySelector('.canvas-container')
     if (elCanvas.style.display === 'none') return false
     gElCanvas.width = elCanvas.offsetWidth / 2
     gElCanvas.height = elCanvas.offsetHeight / 2
     return true
-    // console.log(gElCanvas.width)
 }

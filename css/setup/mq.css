@@ -2,9 +2,13 @@
 @media (max-width: 640px) {
     .main-header .btn-toggle-menu {
         position: relative;
-        width: 50px;
+        width: fit-content;
         height: 50px;
-        transition: left 0.8s ease;
+        transition: transform 0.8s ease;
+    }
+
+    .menu-open .btn-toggle-menu {
+        transform: translateX(-189px);
     }
 
     .main-nav {
@@ -43,6 +47,24 @@
     .main-nav a:hover {
         background-color: #e0e0e0;
     }
+
+    .filter-bar>ul {
+        flex-direction: column;
+    }
+
+    .filter-bar>ul>li {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .filter-bar a {
+        display: grid;
+        padding: 8px 10px;
+        color: var(--crl-logo);
+    }
+
+    .filter-bar a:hover {
+        background-color: #e0e0e0;
+    }
 }
 
 
@@ -66,10 +88,27 @@
         height: 130px;
     }
 
+    .filter-bar a {
+        width: 80px;
+        height: 80px;
+    }
+
     .card {
         background-color: aliceblue;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 10px;
+    }
+
+    .options {
+        width: 50%;
+        background-color: rgb(28, 103, 168);
+        border: 2px solid black;
+    }
+    
+    canvas {
+        background-color: aliceblue;
+        border: 2px solid black;
+        width: 50%
     }
 }

@@ -35,19 +35,23 @@ function onRenderSaved() {
         return
     }
 
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
+
+
     // Create HTML for each saved image
-    let strHTML = '';
-    images.forEach((image, idx) => {
+    let strHTML = ''
+    images.forEach((image) => {
         strHTML += `
-            <div class="saved-img">
-                <img src="${image.data}">
-            </div>
-        `
-    })
+                <img src="${image.data}" onclick="onImageClick(this, ${image.gCurrMeme.selectedImgId})" class="img-${image.gCurrMeme.selectedImgId}">
+                ` 
+            }
+            )
 
     // Render the images in a container element
-    const elCard = document.querySelector('.card');
-    elCard.innerHTML = strHTML;
+    const elCard = document.querySelector('.card')
+    elCard.innerHTML = strHTML
+
 }
 
 function getRandomInt(min, max) {

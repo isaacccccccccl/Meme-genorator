@@ -35,8 +35,6 @@ var gMeme = {
     ]
 }
 
-// var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-
 function getImgs() {
     if (gFilter) return gFilter
     return gImgs
@@ -85,6 +83,10 @@ function updatelineIdx(line) {
     gMeme.selectedLineIdx = line
 }
 
+function updateGmemesWidth(elVal, val, idx) {
+    gMeme.lines[idx][val] = elVal
+}
+
 function updateGmemes(elVal, val) {
     gMeme.lines[gMeme.selectedLineIdx][val] = elVal
 }
@@ -103,9 +105,7 @@ function deleteLine() {
 function isBoxClicked(clickedPos) {
     const foundLine = gMeme.lines.some((meme, i) => {
         const { pos, memeWidth, size } = meme
-        console.log(pos.x, memeWidth, clickedPos.x, pos.y, size, clickedPos.y)
         if (pos.x < clickedPos.x && pos.y > clickedPos.y && pos.x + memeWidth > clickedPos.x && pos.y - size < clickedPos.y) {
-            console.log('true')
             gSelectedLine = i
             return true
         }
@@ -125,7 +125,6 @@ function setBoxDrag(isDrag) {
 function moveBox(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
-    // console.log(gMeme.lines[gMeme.selectedLineIdx].pos.x)
 }
 
 function updateFont(elFont) {

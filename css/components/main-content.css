@@ -10,12 +10,43 @@
     height: 100px;
 }
 
+.main-content .filter-bar ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+}
+
 .main-content .filter-bar input {
     width: 35%;
     height: 20px;
+    background: var(--crl-primery-2);
+    color: rgb(251, 251, 251);
+}
+
+.main-content .filter-bar input::placeholder {
+    color: white;
 }
 
 .main-content .filter-bar button {
     width: fit-content;
     height: 20px;
+}
+
+.main-content .filter-bar>ul>li {
+    border-inline-end: 1px solid var(--crl-primery-1);
+}
+
+.main-content .filter-bar>ul>li:first-child {
+    border-inline-start: 1px solid var(--clr-primary-1);
+}
+
+.main-content .filter-bar a {
+    display: grid;
+    place-items: center;
+    grid-auto-flow: row;
+    color: inherit;
+    text-decoration: none;
+
+    transition: box-shadow .4s;
 }
