@@ -19,26 +19,21 @@
                     <li><a href="#" class="clean-link" onclick="onRandomImage()">Randomize</a></li>
                 </ul>
             </nav>
-            <button class="btn-toggle-menu" onclick="toggleMenu(this)">more</button>
+            <button class="btn-toggle-menu" onclick="toggleMenu(this)">≡</button>
         </div>
     </header>
 
     <main class="main-content">
         <div class="cards">
             <div class="filter-bar">
-                <input type="text" oninput="onFilter(this.value)" placeholder="filter by">
+                <input type="text" oninput="onFilter(this.value)" placeholder="filter by" class="txt">
                 <ul>
                     <li><a href="#" onclick="onFilter('happy')">Happy</a></li>
-                    <li><a href="#" onclick="onFilter('sad')">sad</a></li>
+                    <li><a href="#" onclick="onFilter('sad')">Sad</a></li>
                     <li><a href="#" onclick="onFilter('scary')">Scary</a></li>
                     <li><a href="#" onclick="onFilter('sarcastic')">Sarcastic</a></li>
                     <li><a href="#" onclick="onFilter('funny')">Funny</a></li>
                 </ul>
-                <!-- <button onclick="onFilter('happy')">Happy</button>
-                <button onclick="onFilter('sad')">sad</button>
-                <button onclick="onFilter('scary')">Scary</button>
-                <button onclick="onFilter('sarcastic')">Sarcastic</button>
-                <button onclick="onFilter('funny')">Funny</button> -->
             </div>
             <div class="card">
             </div>

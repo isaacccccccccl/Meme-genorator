@@ -1,6 +1,7 @@
 .main-layout {
     display: grid;
     grid-template-columns: var(--layoutpadding) 1fr var(--layoutpadding);
+    grid-template-rows: auto 1fr auto;
 }
 
 .main-layout>.full {
