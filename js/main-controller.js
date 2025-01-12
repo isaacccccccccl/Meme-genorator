@@ -170,6 +170,7 @@ function switchLineTap(selectLine) {
 function onDown(ev) {
     // Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
+    console.log(pos)
     var [isClicked, selectLined] = isBoxClicked(pos)
     if (!isClicked) {
         setBoxDrag(false)
@@ -186,6 +187,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+    // console.log(ev)
     if (!gCurrMeme.lines.length) return
     const { isDrag } = gCurrMeme.lines[gCurrMeme.selectedLineIdx]
     if (!isDrag) return
