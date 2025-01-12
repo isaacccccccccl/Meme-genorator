@@ -120,6 +120,7 @@
 
     .options {
         width: 50%;
+        height: 75%;
         background-color: rgb(28, 103, 168);
         border: 2px solid black;
     }
@@ -127,6 +128,7 @@
     canvas {
         background-color: aliceblue;
         border: 2px solid black;
-        width: 50%
+        width: 50%;
+        height: 75%;
     }
 }

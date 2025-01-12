@@ -6,39 +6,78 @@
 .canvas-container .options {
     display: flex;
     flex-direction: column;
+    place-content: center;
     justify-content: space-evenly;
-    place-items: center;
+    flex-wrap: wrap;
+
 
     background-color: var(--crl-primery-4);
 }
 
 .canvas-container .options .txt {
-    width: fit-content;
+    width: 65%;
+    height: 8%;
+    font-size: 1.1rem;
+
+    border-radius: 16px;
+    background-color: var(--crl-primery-4);
+    color: var(--crl-primery-9);
+    place-content: center;
+}
+
+.canvas-container .options .txt::placeholder {
+    color: var(--crl-primery-9);
+    font-size: 1.1rem;
+
 }
 
 .canvas-container .options-buttons {
+    width: 65%;
     gap: 10px;
     background-color: var(--crl-logo);
     padding: 5%;
-    border-radius: 25%;
+    border-radius: 16px;
+    place-content: center;
+
 }
 
 .canvas-container .design-fetures {
+    width: 65%;
     background-color: var(--crl-logo);
     padding: 5%;
-    border-radius: 25%;
+    border-radius: 16px;
+    place-content: center;
 }
 
 .canvas-container .save {
+    width: 65%;
     background-color: var(--crl-logo);
+    
     padding: 5%;
-    border-radius: 25%;
+    border-radius: 16px;
+    place-content: center;
+
+    display: flex;
+    gap: 15px;
+}
+
+.canvas-container .save a{
+    color: var(--crl-primery-1);
+    font-size: 1.124rem;
+}
+
+.canvas-container .save a:hover{
+    background-color: var(--crl-primery-3);
+    font-size: 1.124rem;
 }
 
 .canvas-container button {
+    color: var(--crl-primery-1);
     width: fit-content;
-    font-size: 100%;
-    background-color: var(--crl-primery-1);
+    font-size: 1.5rem;
+    background-color: inherit;
+
+    border: none;
 }
 
 button:hover {

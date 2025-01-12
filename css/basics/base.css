@@ -6,6 +6,12 @@ html {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--crl-primery-1);
 }
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
 header,
 footer {
     background-color: var(--crl-logo);
@@ -35,8 +41,4 @@ a {
 
 .logo {
     font-size: 2rem;
-}
-
-footer {
-    place-items: center;
 }
